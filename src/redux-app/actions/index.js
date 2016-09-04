@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import uniqueId from 'lodash.uniqueid';
 
 /*
  * action types
@@ -11,7 +12,9 @@ export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
  * action creators
  */
 
-const addExpense = createAction(ADD_EXPENSE, (name, value) => ({ name, value }));
+const addExpense = createAction(ADD_EXPENSE, (name, value) => (
+  { name, value, id: uniqueId() }
+));
 const removeExpense = createAction(REMOVE_EXPENSE)
 export { addExpense, removeExpense };
 
