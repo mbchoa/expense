@@ -1,14 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import VisibleExpenseList from '../containers/VisibleExpenseList';
+import AddExpense from '../containers/AddExpense';
 
-const App = (props) => {
+const App = ({ balance }) => {
   return (
     <div className="expense-app">
       <h1>Expense</h1>
-      <div className="expense-list">Expenses List</div>
-      <div className="expense-form">Add Expense Form</div>
-      <h3 className="expense-app__total">Total Balance: </h3>
+      <VisibleExpenseList />
+      <AddExpense />
+      <h3 className="expense-app__total">Total Balance: {balance}</h3>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    balance: state.balance,
+  }
+};
+
+const AppContainer = connect(
+  mapStateToProps,
+)(App);
+
+export default AppContainer;
